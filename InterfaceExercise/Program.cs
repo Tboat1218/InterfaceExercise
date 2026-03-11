@@ -2,48 +2,122 @@
 
 namespace InterfaceExercise
 {
+    interface ICompany
+    {
+        public string CompanyName { get; set; }
+        public string Logo { get; set; }
+    }
+
+    interface IVehicle : ICompany
+    {
+        public int NumberOfWheels { get; set; }
+        public string Color { get; set; }
+        public string Model { get; set; }
+        public int Year { get; set; }
+
+        void DisplayDetails();
+    }
+
+    class Car : IVehicle
+    {
+        public int NumberOfWheels { get; set; }
+        public string Color { get; set; }
+        public string Model { get; set; }
+        public int Year { get; set; }
+        public string CompanyName { get; set; }
+        public string Logo { get; set; }
+
+        public bool HasTrunk { get; set; }
+        public int NumberOfDoors { get; set; }
+
+        public void DisplayDetails()
+        {
+            Console.WriteLine(
+                $"Car: {Year} {Color} {Model}, Wheels: {NumberOfWheels}, Company: {CompanyName}, Logo: {Logo}, Has Trunk: {HasTrunk}, Doors: {NumberOfDoors}");
+        }
+    }
+
+    class Truck : IVehicle
+    {
+        public int NumberOfWheels { get; set; }
+        public string Color { get; set; }
+        public string Model { get; set; }
+        public int Year { get; set; }
+        public string CompanyName { get; set; }
+        public string Logo { get; set; }
+
+        public int TowingCapacity { get; set; }
+        public bool HasBed { get; set; }
+
+        public void DisplayDetails()
+        {
+            Console.WriteLine(
+                $"Truck: {Year} {Color} {Model}, Wheels: {NumberOfWheels}, Company: {CompanyName}, Logo: {Logo}, Towing Capacity: {TowingCapacity}, Has Bed: {HasBed}");
+        }
+    }
+
+    class SUV : IVehicle
+    {
+        public int NumberOfWheels { get; set; }
+        public string Color { get; set; }
+        public string Model { get; set; }
+        public int Year { get; set; }
+        public string CompanyName { get; set; }
+        public string Logo { get; set; }
+
+        public int NumberOfSeats { get; set; }
+        public bool HasThirdRow { get; set; }
+
+        public void DisplayDetails()
+        {
+            Console.WriteLine(
+                $"SUV: {Year} {Color} {Model}, Wheels: {NumberOfWheels}, Company: {CompanyName}, Logo: {Logo}, Seats: {NumberOfSeats}, Has Third Row: {HasThirdRow}");
+        }
+    }
+
     class Program
     {
         static void Main(string[] args)
         {
-            //TODO Be sure to follow BEST PRACTICES when creating classes and interfaces
+            Car car = new Car
+            {
+                NumberOfWheels = 4,
+                Color = "Red",
+                Model = "Accord",
+                Year = 2022,
+                CompanyName = "Honda",
+                Logo = "H",
+                HasTrunk = true,
+                NumberOfDoors = 4
+            };
 
-            //Create 2 Interfaces called IVehicle & ICompany
+            Truck truck = new Truck
+            {
+                NumberOfWheels = 4,
+                Color = "Black",
+                Model = "F-150",
+                Year = 2023,
+                CompanyName = "Ford",
+                Logo = "Ford Oval",
+                TowingCapacity = 13000,
+                HasBed = true
+            };
 
-            //Create 3 classes called Car , Truck , & SUV
+            SUV suv = new SUV
+            {
+                NumberOfWheels = 4,
+                Color = "White",
+                Model = "Highlander",
+                Year = 2024,
+                CompanyName = "Toyota",
+                Logo = "Toyota Emblem",
+                NumberOfSeats = 7,
+                HasThirdRow = true
+            };
 
-            //In your IVehicle:
-            
-                /* Create 4 members that Car, Truck, & SUV all have in common.
-                 * Example: public int NumberOfWheels { get; set; }
-                 */
-            
-
-            //In ICompany: 
-            
-                /* Create 2 members that are specific to each every company
-                 * regardless of vehicle type.
-                 * Example: public string Logo { get; set; }
-                 */
-
-            //In each of your Car, Truck, and SUV classes
-
-                /* Create 2 members that are specific to each class
-                 * Example for Car: public bool HasTrunk { get; set; }
-                 * Example for SUV: public int NumberOfSeats { get; set; }
-                 *
-                 * Then, Set each class to inherit from both IVehicle and ICompany and implement their members.
-                 */
-
-            //Now, create objects of your 3 classes and give their members values.
-            //Creatively display and organize their values
-            
-            //Option for displaying values: 
-            //Create a stubbed out method called DisplayDetails in your IVehicle interface.
-            //Implement the stubbed out method in the derived classes.
-            //In the scope of them method, use string interpolation to display property values.
-            //In order to also interpolate values from ICompany, research how to extend interfaces.
-            
+            car.DisplayDetails();
+            truck.DisplayDetails();
+            suv.DisplayDetails();
         }
     }
 }
